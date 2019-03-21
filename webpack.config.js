@@ -3,18 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    entry: glob.sync("./src/*.js").reduce((entries, entry) => {
-        return { ...entries, ...{ [entry.replace(/(\/src|\.js)/g, "")]: entry }};
+    entry: glob.sync("./src/*").reduce((entries, entry) => {
+        return { ...entries, ...{ [entry.replace(/(\/src|\.js|\.ts)/g, "")]: entry }};
     }, {}),
     output: {
         path: __dirname,
         filename: "dist/[name].js",
     },
-    plugins: glob.sync("./src/*.js").map(entry => {
+    module: {
+        rules: [{
+            test: /\.ts$/,
+            loader: ["ts-loader"],
+        },
+    ]},
+    plugins: glob.sync("./src/*").map(entry => {
         return new HtmlWebpackPlugin({
-            template: "template.html",
-            chunks: [entry.replace(/(\/src|\.js)/g, "")],
-            filename: `${entry.replace(/(\/src|\.js)/g, "")}.html`,
+            template: "template/template.html",
+            chunks: [entry.replace(/(\/src|\.js|\.ts)/g, "")],
+            filename: `${entry.replace(/(\/src|\.js|\.ts)/g, "")}.html`,
         })
     }),
 };

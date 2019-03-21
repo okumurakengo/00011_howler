@@ -1,10 +1,11 @@
-import { Howl, Howler } from 'howler';
+import { Howl, Howler } from "howler";
 
-var sound = new Howl({
+const sound = new Howl({
     src: [
-        '../audio/piano.ogg',
-        '../audio/piano.mp3',
+        "audio/piano.ogg",
+        "audio/piano.mp3",
     ]
 });
 
-button.addEventListener("click", e => sound.play() );
+document.body.insertAdjacentHTML("afterbegin", '<button>play</button>')
+document.querySelector("button").addEventListener("click", e => sound.play() );
