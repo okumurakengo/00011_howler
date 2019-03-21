@@ -10,6 +10,8 @@ yarn
 yarn run webpack -w
 ```
 
+---
+
 ```
 node server.js
 ```
