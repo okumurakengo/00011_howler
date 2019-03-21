@@ -1,13 +1,13 @@
 ```
 npm i
-npx webpack -w
+npx webpack
 ```
 
 または、
 
 ```
 yarn
-yarn run webpack -w
+yarn run webpack
 ```
 
 ---
